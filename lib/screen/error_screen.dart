@@ -2,20 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_go_router_v7/layout/default_layout.dart';
 import 'package:go_router/go_router.dart';
 
-class FirstScreen extends StatelessWidget {
-  const FirstScreen({super.key});
+class ErrorScreen extends StatelessWidget {
+  final String error;
+
+  const ErrorScreen({
+    super.key,
+    required this.error,
+  });
 
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          Text(error),
           ElevatedButton(
             onPressed: () {
-              context.pop();
+              context.go('/');
             },
-            child: Text('POP'),
+            child: Text('홈으로'),
           ),
         ],
       ),

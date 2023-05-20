@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_go_router_v7/screen/error_screen.dart';
 import 'package:flutter_go_router_v7/screen/first_screen.dart';
 import 'package:flutter_go_router_v7/screen/home_screen.dart';
+import 'package:flutter_go_router_v7/screen/second_screen.dart';
+import 'package:flutter_go_router_v7/screen/third_screen.dart';
 import 'package:go_router/go_router.dart';
 
 void main() {
@@ -12,14 +15,30 @@ class _App extends StatelessWidget {
 
   GoRouter get _router => GoRouter(
         initialLocation: '/',
+        errorBuilder: (context, state) {
+          return ErrorScreen(error: state.error.toString());
+        },
         routes: [
           GoRoute(
             path: '/',
-            builder: (context, state) => HomeScreen(),
+            builder: (context, state) => const HomeScreen(),
             routes: [
               GoRoute(
                 path: 'first',
-                builder: (context, state) => FirstScreen(),
+                builder: (context, state) => const FirstScreen(),
+                routes: [
+                  GoRoute(
+                    path: 'second',
+                    builder: (context, state) => const SecondScreen(),
+                    routes: [
+                      GoRoute(
+                        path: 'third',
+                        name: ThirdScreen.routeName,
+                        builder: (context, state) => const ThirdScreen(),
+                      )
+                    ],
+                  )
+                ],
               ),
             ],
           ),
