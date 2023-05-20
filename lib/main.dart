@@ -1,52 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_go_router_v7/screen/error_screen.dart';
-import 'package:flutter_go_router_v7/screen/first_screen.dart';
-import 'package:flutter_go_router_v7/screen/home_screen.dart';
-import 'package:flutter_go_router_v7/screen/second_screen.dart';
-import 'package:flutter_go_router_v7/screen/third_screen.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_go_router_v7/provider/auth_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const _App());
+  runApp(ProviderScope(child: const _App()));
 }
 
-class _App extends StatelessWidget {
+class _App extends ConsumerWidget {
   const _App();
 
-  GoRouter get _router => GoRouter(
-        initialLocation: '/',
-        errorBuilder: (context, state) {
-          return ErrorScreen(error: state.error.toString());
-        },
-        routes: [
-          GoRoute(
-            path: '/',
-            builder: (context, state) => const HomeScreen(),
-            routes: [
-              GoRoute(
-                path: 'first',
-                builder: (context, state) => const FirstScreen(),
-                routes: [
-                  GoRoute(
-                    path: 'second',
-                    builder: (context, state) => const SecondScreen(),
-                    routes: [
-                      GoRoute(
-                        path: 'third',
-                        name: ThirdScreen.routeName,
-                        builder: (context, state) => const ThirdScreen(),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ],
-          ),
-        ],
-      );
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
+
     return MaterialApp.router(
       theme: ThemeData(
         useMaterial3: true,
@@ -55,7 +21,7 @@ class _App extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      routerConfig: _router,
+      routerConfig: router,
     );
   }
 }
