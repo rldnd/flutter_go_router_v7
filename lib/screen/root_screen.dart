@@ -17,6 +17,12 @@ class RootScreen extends ConsumerWidget {
             },
             child: Text('Go Basic'),
           ),
+          ElevatedButton(
+            onPressed: () {
+              context.goNamed('named_screen');
+            },
+            child: Text('Go Named'),
+          ),
         ],
       ),
     );
