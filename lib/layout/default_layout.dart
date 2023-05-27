@@ -8,15 +8,13 @@ class DefaultLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final router = GoRouter.of(context);
-
     return Scaffold(
       appBar: AppBar(
-        title: Text(router.location),
+        title: Text(GoRouterState.of(context).location),
         backgroundColor: Colors.deepPurple[200],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.all(8.0),
         child: body,
       ),
     );
