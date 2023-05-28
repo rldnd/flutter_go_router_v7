@@ -6,7 +6,7 @@ class SecondNamedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultLayout(
+    return const DefaultLayout(
       body: Center(
         child: Text('Second Named Screen'),
       ),
