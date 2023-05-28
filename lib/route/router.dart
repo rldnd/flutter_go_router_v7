@@ -3,6 +3,7 @@ import 'package:flutter_go_router_v7/screen/first_basic_screen.dart';
 import 'package:flutter_go_router_v7/screen/forth_pop_base_screen.dart';
 import 'package:flutter_go_router_v7/screen/root_screen.dart';
 import 'package:flutter_go_router_v7/screen/second_named_screen.dart';
+import 'package:flutter_go_router_v7/screen/seventh_query_parameter.dart';
 import 'package:flutter_go_router_v7/screen/sixth_path_param_screen.dart';
 import 'package:flutter_go_router_v7/screen/third_push_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -45,6 +46,10 @@ final router = GoRouter(
               builder: (context, state) => PathParamScreen(),
             ),
           ],
+        ),
+        GoRoute(
+          path: 'query_param',
+          builder: (context, state) => QueryParameterScreen(),
         ),
       ],
     ),
