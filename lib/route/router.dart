@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_go_router_v7/screen/eighth_nested_child_screen.dart';
 import 'package:flutter_go_router_v7/screen/eighth_nested_screen.dart';
 import 'package:flutter_go_router_v7/screen/fifth_pop_return_screen.dart';
@@ -9,6 +10,8 @@ import 'package:flutter_go_router_v7/screen/root_screen.dart';
 import 'package:flutter_go_router_v7/screen/second_named_screen.dart';
 import 'package:flutter_go_router_v7/screen/seventh_query_parameter.dart';
 import 'package:flutter_go_router_v7/screen/sixth_path_param_screen.dart';
+import 'package:flutter_go_router_v7/screen/tenth_transition_screen_1.dart';
+import 'package:flutter_go_router_v7/screen/tenth_transition_screen_2.dart';
 import 'package:flutter_go_router_v7/screen/third_push_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -110,6 +113,34 @@ final router = GoRouter(
                 if (!authState) return '/login2';
                 return null;
               },
+            ),
+          ],
+        ),
+        GoRoute(
+          path: 'transition',
+          builder: (context, state) => TransitionScreenOne(),
+          routes: [
+            GoRoute(
+              path: 'detail',
+              pageBuilder: (context, state) => CustomTransitionPage(
+                transitionDuration: Duration(seconds: 3),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                  // return ScaleTransition(
+                  //   scale: animation,
+                  //   child: child,
+                  // );
+                  // return RotationTransition(
+                  //   turns: animation,
+                  //   child: child,
+                  // );
+                },
+                child: TransitionScreenTwo(),
+              ),
             ),
           ],
         ),

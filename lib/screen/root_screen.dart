@@ -67,6 +67,12 @@ class RootScreen extends ConsumerWidget {
             },
             child: const Text('Go to login2'),
           ),
+          ElevatedButton(
+            onPressed: () {
+              context.go('/transition');
+            },
+            child: const Text('Go to transition'),
+          ),
         ],
       ),
     );
