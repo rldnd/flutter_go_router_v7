@@ -35,6 +35,12 @@ class RootScreen extends ConsumerWidget {
             },
             child: const Text('Go return'),
           ),
+          ElevatedButton(
+            onPressed: () {
+              context.go('/path_param/456');
+            },
+            child: const Text('Go path param'),
+          ),
         ],
       ),
     );
