@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_go_router_v7/screen/eighth_nested_child_screen.dart';
 import 'package:flutter_go_router_v7/screen/eighth_nested_screen.dart';
+import 'package:flutter_go_router_v7/screen/eleventh_error_screen.dart';
 import 'package:flutter_go_router_v7/screen/fifth_pop_return_screen.dart';
 import 'package:flutter_go_router_v7/screen/first_basic_screen.dart';
 import 'package:flutter_go_router_v7/screen/forth_pop_base_screen.dart';
@@ -16,6 +17,7 @@ import 'package:flutter_go_router_v7/screen/third_push_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
+  errorBuilder: (context, state) => ErrorScreen(error: state.error.toString()),
   redirect: (context, state) {
     if (state.location == '/login/private' && !authState) {
       return '/login';
